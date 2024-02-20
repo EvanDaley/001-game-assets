@@ -8,10 +8,8 @@ public class SimpleRuntimeUI : MonoBehaviour
 
     private int _clickCount;
 
-    //Add logic that interacts with the UI controls in the `OnEnable` methods
     private void OnEnable()
     {
-        // The UXML is already instantiated by the UIDocument component
         var uiDocument = GetComponent<UIDocument>();
 
         _button = uiDocument.rootVisualElement.Q("button") as Button;
