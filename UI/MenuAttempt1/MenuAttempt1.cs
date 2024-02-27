@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MenuAttempt1 : MonoBehaviour
 {
-    private Dropdown _dropdown;
+    private DropdownField _dropdown;
     private string _dropdownValue;
 
-    void onEnable() {
+    void OnEnable() {
+        Debug.Log("onEnable");
+
         var uiDocument = GetComponent<UIDocument>();
-        _dropdown = uiDocument.rootVisualElement.Q("dropdown") as Dropdown;
-        _dropdown.RegisterCallback<ChangeEvent<string>>(DropdownChangeEvent);
-
-
+        _dropdown = uiDocument.rootVisualElement.Q("DropdownField1") as DropdownField;
+        Debug.Log(_dropdown);
+        _dropdown.RegisterCallback<ChangeEvent<string>>(dropdownChangeEvent);
     }
 
-    void onDisable() {
+    void OnDisable() {
+        Debug.Log("onDisable");
 
+        _dropdown.UnregisterCallback<ChangeEvent<string>>(dropdownChangeEvent);
     }
 
     void dropdownChangeEvent(ChangeEvent<string> evt) {
